@@ -14,31 +14,34 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;400;500;600;700&family=Prompt:wght@300;400;500&display=swap" rel="stylesheet">
     
     <!-- Custom CSS -->
     <style>
         body {
             font-family: 'Kanit', sans-serif;
-            background-color: #f0f4f8;
+            background-color: #f8f5f0;
             padding-bottom: 60px; /* For footer space */
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d1c4ae' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
         .navbar {
-            background: linear-gradient(135deg, #0d6efd, #0099ff);
+            background: linear-gradient(135deg, #8B4513, #A0522D);
             color: white;
             padding: 15px 0;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             margin-bottom: 30px;
         }
         .card {
             border: none;
             border-radius: 15px;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 6px 18px rgba(139, 69, 19, 0.15);
             overflow: hidden;
             margin-bottom: 30px;
+            background-color: #fff;
+            border-left: 5px solid #8B4513;
         }
         .card-header {
-            background: linear-gradient(135deg, #0d6efd, #0099ff);
+            background: linear-gradient(135deg, #8B4513, #A0522D);
             color: white;
             font-weight: 500;
             padding: 15px 20px;
@@ -51,12 +54,19 @@
             transition: all 0.3s;
         }
         .btn-primary {
-            background: linear-gradient(135deg, #0d6efd, #0099ff);
+            background: linear-gradient(135deg, #8B4513, #A0522D);
             border: none;
         }
         .btn-primary:hover {
-            background: linear-gradient(135deg, #0b5ed7, #0077cc);
+            background: linear-gradient(135deg, #A0522D, #CD853F);
             transform: translateY(-2px);
+        }
+        .btn-danger {
+            background-color: #DC3545;
+        }
+        .btn-warning {
+            background-color: #D4A76A;
+            color: white;
         }
         .btn-danger:hover, .btn-warning:hover {
             transform: translateY(-2px);
@@ -65,13 +75,15 @@
             border-radius: 8px;
             padding: 10px 15px;
             border: 1px solid #ddd;
+            background-color: #FFFAF0;
         }
         .form-control:focus, .form-select:focus {
-            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-            border-color: #86b7fe;
+            box-shadow: 0 0 0 0.25rem rgba(139, 69, 19, 0.25);
+            border-color: #CD853F;
+            background-color: #fff;
         }
         footer {
-            background: linear-gradient(135deg, #0d6efd, #0099ff);
+            background: linear-gradient(135deg, #8B4513, #A0522D);
             color: white;
             text-align: center;
             padding: 15px 0;
@@ -93,36 +105,81 @@
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        .form-label {
+            position: relative;
+        }
+        .form-label i {
+            margin-right: 8px;
+            color: #8B4513;
+        }
+        .book-icon {
+            animation: float 3s ease-in-out infinite;
+            display: inline-block;
+            margin-right: 5px;
+            color: #FFF8DC;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+        .page-title {
+            font-family: 'Prompt', sans-serif;
+            font-weight: 500;
+        }
+        .form-group-icon {
+            position: relative;
+        }
+        .form-group-icon i {
+            position: absolute;
+            top: 12px;
+            left: 15px;
+            color: #8B4513;
+        }
+        .icon-input {
+            padding-left: 40px !important;
+        }
+        .btn i {
+            margin-right: 6px;
+        }
+        .navbar-brand {
+            font-family: 'Prompt', sans-serif;
+            font-weight: 500;
+        }
+        .book-card-icon {
+            font-size: 24px;
+            margin-right: 10px;
+            color: #FFF8DC;
+        }
     </style>
 </head>
 <body>
     <!-- Navbar -->
     <div class="navbar">
         <div class="container d-flex justify-content-between align-items-center">
-            <div class="fs-4 fw-bold">
-                <i class="fas fa-chalkboard-teacher me-2"></i>
+            <div class="fs-4 fw-bold navbar-brand">
+                <i class="fas fa-book-open book-icon"></i>
                 ระบบจัดการข้อมูลหนังสือ
             </div>
-            <div>
-                <a href="login1.php" class="btn btn-outline-light btn-sm">
-                    <i class="fas fa-sign-in-alt me-1"></i> เข้าสู่ระบบ
-                </a>
-            </div>
+            
         </div>
     </div>
 
     <div class="container">
         <div class="card">
             <div class="card-header fs-5">
-                <i class="fas fa-user-plus me-2"></i>
-                เพิ่มข้อมูลหนังสือ
+                <i class="fas fa-book-medical book-card-icon"></i>
+                <span class="page-title">เพิ่มข้อมูลหนังสือ</span>
             </div>
             <div class="card-body p-4">
                 <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" class="needs-validation" novalidate>
                     <div class="row mb-3">
-                        <label for="teacher_id" class="col-sm-3 col-md-2 col-form-label">รหัสหนังสือ</label>
-                        <div class="col-sm-9 col-md-4">
-                            <input type="text" class="form-control" id="book_id" name="book_id" required>
+                        <label for="book_id" class="col-sm-3 col-md-2 col-form-label">
+                            <i class="fas fa-barcode"></i> รหัสหนังสือ
+                        </label>
+                        <div class="col-sm-9 col-md-4 form-group-icon">
+                            <i class="fas fa-hashtag"></i>
+                            <input type="text" class="form-control icon-input" id="book_id" name="book_id" required>
                             <div class="invalid-feedback">
                                 กรุณากรอกรหัสหนังสือ
                             </div>
@@ -130,9 +187,12 @@
                     </div>
                     
                     <div class="row mb-3">
-                        <label for="title" class="col-sm-3 col-md-2 col-form-label">ชื่อหนังสือ</label>
-                        <div class="col-sm-9 col-md-4">
-                            <input type="text" class="form-control" id="title" name="title" required>
+                        <label for="title" class="col-sm-3 col-md-2 col-form-label">
+                            <i class="fas fa-bookmark"></i> ชื่อหนังสือ
+                        </label>
+                        <div class="col-sm-9 col-md-4 form-group-icon">
+                            <i class="fas fa-font"></i>
+                            <input type="text" class="form-control icon-input" id="title" name="title" required>
                             <div class="invalid-feedback">
                                 กรุณากรอกชื่อหนังสือ
                             </div>
@@ -140,9 +200,12 @@
                     </div>
                     
                     <div class="row mb-3">
-                        <label for="author" class="col-sm-3 col-md-2 col-form-label">ผู้แต่ง</label>
-                        <div class="col-sm-9 col-md-4">
-                            <input type="text" class="form-control" id="author" name="author" required>
+                        <label for="author" class="col-sm-3 col-md-2 col-form-label">
+                            <i class="fas fa-user-edit"></i> ผู้แต่ง
+                        </label>
+                        <div class="col-sm-9 col-md-4 form-group-icon">
+                            <i class="fas fa-pen-fancy"></i>
+                            <input type="text" class="form-control icon-input" id="author" name="author" required>
                             <div class="invalid-feedback">
                                 กรุณากรอกชื่อผู้แต่ง
                             </div>
@@ -150,9 +213,12 @@
                     </div>
                     
                     <div class="row mb-3">
-                        <label for="genre" class="col-sm-3 col-md-2 col-form-label">ประเภทของหนังสือ</label>
-                        <div class="col-sm-9 col-md-4">
-                            <select name="genre" id="genre" class="form-select" required>
+                        <label for="genre" class="col-sm-3 col-md-2 col-form-label">
+                            <i class="fas fa-tags"></i> ประเภท
+                        </label>
+                        <div class="col-sm-9 col-md-4 form-group-icon">
+                            <i class="fas fa-list-ul"></i>
+                            <select name="genre" id="genre" class="form-select icon-input" required>
                                 <option value="" selected disabled>เลือกประเภทของหนังสือ</option>
                                 <option value="ผจญภัย">ผจญภัย</option>
                                 <option value="รักโรแมนติก">รักโรแมนติก</option>
@@ -167,11 +233,13 @@
                         </div>
                     </div>
                     
-                    
                     <div class="row mb-3">
-                        <label for="published_year" class="col-sm-3 col-md-2 col-form-label">ปีที่ตีพิมพ์</label>
-                        <div class="col-sm-9 col-md-4">
-                            <input type="text" class="form-control" id="published_year" name="published_year" min="1" max="100" required>
+                        <label for="published_year" class="col-sm-3 col-md-2 col-form-label">
+                            <i class="fas fa-calendar-alt"></i> ปีที่ตีพิมพ์
+                        </label>
+                        <div class="col-sm-9 col-md-4 form-group-icon">
+                            <i class="fas fa-clock"></i>
+                            <input type="text" class="form-control icon-input" id="published_year" name="published_year" min="1" max="100" required>
                             <div class="invalid-feedback">
                                 กรุณากรอกปีที่ตีพิมพ์
                             </div>
@@ -179,9 +247,12 @@
                     </div>
                     
                     <div class="row mb-3">
-                        <label for="mood" class="col-sm-3 col-md-2 col-form-label">อารมณ์ของหนังสือ</label>
-                        <div class="col-sm-9 col-md-4">
-                            <input type="text" class="form-control" id="mood" name="mood" min="0" required>
+                        <label for="mood" class="col-sm-3 col-md-2 col-form-label">
+                            <i class="fas fa-heart"></i> อารมณ์
+                        </label>
+                        <div class="col-sm-9 col-md-4 form-group-icon">
+                            <i class="fas fa-smile"></i>
+                            <input type="text" class="form-control icon-input" id="mood" name="mood" min="0" required>
                             <div class="invalid-feedback">
                                 กรุณากรอกอารมณ์ของหนังสือ
                             </div>
@@ -190,13 +261,13 @@
                     
                     <div class="mt-4">
                         <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-save me-1"></i> บันทึกข้อมูล
+                            <i class="fas fa-save"></i> บันทึกข้อมูล
                         </button>
                         <button type="reset" class="btn btn-danger">
-                            <i class="fas fa-times me-1"></i> ยกเลิก
+                            <i class="fas fa-times"></i> ยกเลิก
                         </button>
                         <a href="show.php" class="btn btn-warning">
-                            <i class="fas fa-list me-1"></i> แสดงข้อมูล
+                            <i class="fas fa-th-list"></i> แสดงข้อมูล
                         </a>
                     </div>
                 </form>
@@ -243,12 +314,7 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <small>© 2025 ระบบจัดการข้อมูลพนักงาน | มหาวิทยาลัยราชภัฏนครปฐม</small>
-        </div>
-    </footer>
+    
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

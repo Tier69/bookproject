@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,9 +19,8 @@
     <style>
         body {
             font-family: 'Itim', cursive;
-            background-color: #e6f2ff;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Cpath fill='%23rgba(0,102,204,0.05)' d='M400 300 C350 200, 250 150, 200 250 C150 350, 250 400, 400 300 Z' opacity='0.1'/%3E%3Cpath fill='%23rgba(0,102,204,0.05)' d='M400 300 C450 200, 550 150, 600 250 C650 350, 550 400, 400 300 Z' opacity='0.1'/%3E%3Cpath fill='%23rgba(0,102,204,0.05)' d='M400 350 C350 450, 250 500, 200 400 C150 300, 250 250, 400 350 Z' opacity='0.1'/%3E%3Cpath fill='%23rgba(0,102,204,0.05)' d='M400 350 C450 450, 550 500, 600 400 C650 300, 550 250, 400 350 Z' opacity='0.1'/%3E%3C/svg%3E");
-            background-repeat: repeat;
+            background-color: #f8f3e6;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='%23d4c8b0' d='M10 10L90 10L90 90L10 90Z' opacity='0.1'/%3E%3C/svg%3E");
             display: flex;
             justify-content: center;
             align-items: center;
@@ -30,31 +29,55 @@
         }
 
         .error-container {
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,102,204,0.2);
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(139, 97, 62, 0.3);
             padding: 40px;
             text-align: center;
             max-width: 500px;
             width: 100%;
-            border: 2px solid #4a90e2;
+            border: 2px solid #8b613e;
             position: relative;
             z-index: 10;
         }
 
+        .book-corner {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40px;
+            height: 40px;
+            background-color: #8b613e;
+            clip-path: polygon(100% 0, 0 0, 100% 100%);
+        }
+
         .error-icon {
-            font-size: 5rem;
-            color: #0066cc;
+            font-size: 4rem;
+            color: #c17754;
             margin-bottom: 20px;
+            filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.1));
+        }
+
+        .book-design {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #8b613e;
+            height: 30px;
+            width: 120px;
+            border-radius: 5px 5px 0 0;
+            z-index: -1;
         }
 
         .error-title {
-            color: #0066cc;
+            color: #8b613e;
             margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
 
         .error-message {
-            color: #2c7bd4;
+            color: #a67b5b;
             margin-bottom: 30px;
         }
 
@@ -63,34 +86,47 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            background-color: #0066cc;
-            border-color: #0066cc;
+            background-color: #8b613e;
+            border-color: #8b613e;
+            padding: 10px 20px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
         }
 
         .btn-back:hover {
-            background-color: #004c99;
-            border-color: #004c99;
+            background-color: #6d4c30;
+            border-color: #6d4c30;
+            transform: scale(1.05);
         }
 
         .footer {
             margin-top: 20px;
-            color: #2c7bd4;
+            color: #a67b5b;
             font-size: 0.9rem;
+            border-top: 1px dashed #d4c8b0;
+            padding-top: 15px;
+        }
+        
+        .book-icon {
+            display: inline-block;
+            margin-right: 8px;
         }
     </style>
 </head>
 <body>
     <div class="error-container">
-        <i class="bi bi-x-circle error-icon"></i>
-        <h1 class="error-title">Login ผิดพลาด</h1>
+        <div class="book-corner"></div>
+        <div class="book-design"></div>
+        <i class="bi bi-book error-icon"></i>
+        <h1 class="error-title"><i class="bi bi-bookmark-x book-icon"></i> Login ผิดพลาด</h1>
         <h2 class="error-message">กรุณาตรวจสอบ ชื่อผู้ใช้และรหัสผ่าน</h2>
         
         <a href="login.php" class="btn btn-primary btn-back">
-            <i class="bi bi-arrow-left"></i> กลับสู่หน้าจอ Login
+            <i class="bi bi-arrow-left-circle-fill"></i> กลับสู่หน้าจอ Login
         </a>
 
         <div class="footer">
-            พัฒนาโดย 664485028 นภัสกร กิตติเรืองชัย
+            <i class="bi bi-pencil"></i> พัฒนาโดย 664485028 นภัสกร กิตติเรืองชัย
         </div>
     </div>
 

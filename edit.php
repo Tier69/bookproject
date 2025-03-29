@@ -20,40 +20,154 @@ include("conn.php");
     <style>
         body {
             font-family: "Kanit", sans-serif;
-            background-color: #f8f9fa;
+            background-color: #f8f5ee;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
+            padding: 20px 0;
         }
 
         .container {
             background-color: #ffffff;
             padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #8b4513;
+            max-width: 650px;
+            width: 100%;
         }
 
         h1 {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            color: #5d4037;
+            font-weight: 600;
+            border-bottom: 2px dashed #d7ccc8;
+            padding-bottom: 15px;
         }
 
         .form-label {
-            font-weight: bold;
+            font-weight: 500;
+            color: #6d4c41;
+            display: flex;
+            align-items: center;
+        }
+
+        .form-label i {
+            margin-right: 8px;
+            color: #8b4513;
+        }
+
+        .form-control, .form-select {
+            border: 1px solid #d7ccc8;
+            border-radius: 8px;
+            padding: 10px 15px;
+            transition: all 0.3s;
+            background-color: #fff8e1;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: #8b4513;
+            box-shadow: 0 0 0 0.2rem rgba(139, 69, 19, 0.25);
+            background-color: #ffffff;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
         }
 
         .btn {
-            width: 100%;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s;
         }
 
-        .icon {
-            font-size: 50px;
-            color: #007bff;
-            display: block;
+        .btn-primary {
+            background-color: #4a6da7;
+            border: none;
+            flex: 1;
+        }
+
+        .btn-primary:hover {
+            background-color: #3a5b91;
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background-color: #d9534f;
+            border: none;
+            flex: 1;
+        }
+
+        .btn-danger:hover {
+            background-color: #c9302c;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border: none;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        .icon-container {
             text-align: center;
             margin-bottom: 20px;
+        }
+
+        .book-icon {
+            font-size: 48px;
+            color: #8b4513;
+            background-color: #f0e6d2;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #5d4037;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            color: #8b4513;
+        }
+
+        .developer-info {
+            text-align: center;
+            font-size: 14px;
+            color: #7d6e6e;
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px dashed #d7ccc8;
+        }
+
+        /* เพิ่มแอนิเมชั่นเล็กน้อย */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container {
+            animation: fadeIn 0.5s ease-out;
         }
     </style>
 
@@ -62,7 +176,12 @@ include("conn.php");
 
 <body>
     <div class="container">
-        <i class="fas fa-book icon"></i>
+        <div class="icon-container">
+            <div class="book-icon">
+                <i class="fas fa-book-open"></i>
+            </div>
+        </div>
+        
         <h1>แก้ไขข้อมูลหนังสือ</h1>
 
         <?php
@@ -73,7 +192,7 @@ include("conn.php");
             if ($result->num_rows > 0) {
                 $row = $result->fetch_assoc();
             } else {
-                echo "ไม่พบข้อมูลที่ต้องการแก้ไข กรุณาตรวจสอบ";
+                echo "<div class='alert alert-warning'><i class='fas fa-exclamation-circle'></i> ไม่พบข้อมูลที่ต้องการแก้ไข กรุณาตรวจสอบ</div>";
             }
         }
         ?>
@@ -81,22 +200,22 @@ include("conn.php");
         <form action="edit_1.php" method="POST">
             <input type="hidden" name="book_id" value="<?php echo $row['book_id']; ?>">
             <div class="mb-3">
-                <label class="form-label">รหัสหนังสือ</label>
-                <label class="form-control"><?php echo $row['book_id']; ?></label>
+                <label class="form-label"><i class="fas fa-fingerprint"></i> รหัสหนังสือ</label>
+                <div class="form-control bg-light"><?php echo $row['book_id']; ?></div>
             </div>
 
             <div class="mb-3">
-                <label class="form-label">ชื่อหนังสือ</label>
+                <label class="form-label"><i class="fas fa-heading"></i> ชื่อหนังสือ</label>
                 <input type="text" name="title" class="form-control" maxlength="50" value="<?php echo $row['title']; ?>" required>
             </div>
 
             <div class="mb-3">
-                <label class="form-label">ผู้แต่ง</label>
+                <label class="form-label"><i class="fas fa-user-edit"></i> ผู้แต่ง</label>
                 <input type="text" name="author" class="form-control" maxlength="100" value="<?php echo $row['author']; ?>" required>
             </div>
 
             <div class="mb-3">
-                <label class="form-label">ประเภทของหนังสือ</label>
+                <label class="form-label"><i class="fas fa-bookmark"></i> ประเภทของหนังสือ</label>
                 <select name="genre" class="form-select" required>
                     <option value="">กรุณาระบุประเภทของหนังสือนะจ๊ะ</option>
                     <option value="ผจญภัย" <?php if ($row['genre'] == 'ผจญภัย') echo "selected"; ?>>ผจญภัย</option>
@@ -109,20 +228,26 @@ include("conn.php");
             </div>
 
             <div class="mb-3">
-                <label class="form-label">ปีที่ตีพิมพ์</label>
+                <label class="form-label"><i class="fas fa-calendar-alt"></i> ปีที่ตีพิมพ์</label>
                 <input type="text" name="published_year" class="form-control" maxlength="10" value="<?php echo $row['published_year']; ?>" required>
             </div>
 
             <div class="mb-3">
-                <label class="form-label">อารมณ์ของหนังสือ</label>
+                <label class="form-label"><i class="fas fa-heart"></i> อารมณ์ของหนังสือ</label>
                 <input type="text" name="mood" class="form-control" maxlength="50" value="<?php echo $row['mood']; ?>" required>
             </div>
 
-            <button type="submit" class="btn btn-primary">บันทึกข้อมูล</button>
-            <button type="reset" class="btn btn-danger">ยกเลิก</button>
+            <div class="btn-container">
+                <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> บันทึกข้อมูล</button>
+                <button type="reset" class="btn btn-danger"><i class="fas fa-times-circle"></i> ยกเลิก</button>
+            </div>
+            
+            <a href="show.php" class="back-link"><i class="fas fa-arrow-left"></i> กลับไปหน้าแสดงข้อมูล</a>
         </form>
-        <br>
-        <p class="text-center">พัฒนาโดย 664485028 นภัสกร กิตติเรืองชัย</p>
+        
+        <div class="developer-info">
+            <i class="fas fa-user-graduate"></i> พัฒนาโดย 664485028 นภัสกร กิตติเรืองชัย
+        </div>
     </div>
 </body>
 
